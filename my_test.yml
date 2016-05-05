@@ -1,0 +1,5 @@
+- some string
+- 99
+- 100
+- ip_addr: 10.10.10.10
+  platform: cisco_ios
