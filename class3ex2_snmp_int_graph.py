@@ -65,3 +65,49 @@ def main():
     base_count_dict = {}
 
     # Enter a loop gathering SNMP date every 5 minutes
+    for time_track in range (0, 65, 5):
+
+        print "\n%20s %-60s" % ("time", time_track)
+
+        # Gather SNMP statistics for these four fields
+        for entry in ("in_octets", "out_octets", "in_ucast_pkts", "out_ucast_pkts"):
+
+            # Retrieve SNMP data
+            snmp_retrieved_count = get_interface_stats(snmp_device, snmp_user, entry, row_number)
+
+            # Get the base counter value
+            base_count = base_count_dict.get(entry)
+
+            if base_count:
+                #save the data to graph_stats dictionary
+                graph_stats[entry].append(snmp_retrieved_count - base_count)
+                print "%20s %-60s" % (entry, graph_stats[entry][-1])
+
+            # updat the base counter value
+            base_count_dict[entry] = snmp_retrieved_count
+
+        time.sleep(300)
+
+    print
+    if debug:
+        print graph_stats
+
+    x_labels = []
+    for x_label in range(5, 65, 5):
+        xlabels.append(str(x_label))
+
+    if debug:
+        print x_labels
+
+    # Create graphs
+    if line_graph.twoline("pynet-rtr1-octets.svg", "pynet-rtr1 Fa4 Input/Output Bytes",
+                          graph_stats["in_octets"], "In Octets", graph_stats["out_octets"],
+                          "Out Octets", x_labels):
+
+        print "In/Out Octets graph created"
+
+
+    print
+
+if __name__ == '__main__':
+    main()
