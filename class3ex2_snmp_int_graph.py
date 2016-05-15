@@ -65,7 +65,7 @@ def main():
     base_count_dict = {}
 
     # Enter a loop gathering SNMP date every 5 minutes
-    for time_track in range (0, 65, 5):
+    for time_track in range (0, 20, 5):
 
         print "\n%20s %-60s" % ("time", time_track)
 
