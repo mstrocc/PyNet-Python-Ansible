@@ -67,7 +67,7 @@ def main():
     # Enter a loop gathering SNMP date every 5 minutes
     for time_track in range (0, 20, 5):
 
-        print "\n%20s %-60s" % ("time", time_track)
+        print "\n%20s %-20s" % ("time", time_track)
 
         # Gather SNMP statistics for these four fields
         for entry in ("in_octets", "out_octets", "in_ucast_pkts", "out_ucast_pkts"):
@@ -81,7 +81,7 @@ def main():
             if base_count:
                 #save the data to graph_stats dictionary
                 graph_stats[entry].append(snmp_retrieved_count - base_count)
-                print "%20s %-60s" % (entry, graph_stats[entry][-1])
+                print "%20s %-20s" % (entry, graph_stats[entry][-1])
 
             # updat the base counter value
             base_count_dict[entry] = snmp_retrieved_count
@@ -93,7 +93,7 @@ def main():
         print graph_stats
 
     x_labels = []
-    for x_label in range(5, 65, 5):
+    for x_label in range(5, 20, 5):
         xlabels.append(str(x_label))
 
     if debug:
