@@ -25,4 +25,4 @@ time.sleep(3)
 output = ssh_connect.recv(65535)
 print output
 
-
+# It is very important tomake use of the time.sleep command to give the router enought time to generate the command beforeyou try and print it
