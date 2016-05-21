@@ -14,15 +14,16 @@ def main():
     ip_addr = raw_input("Enter IP Address: ")
     password = getpass()
 
-    for a_dict in (pynet1, pynet2, juniper_srx):
+    for a_dict in (pynet1, pynet2):
         a_dict['ip'] = ip_addr
         a_dict['password'] = password
+    
 
         net_connect2 = ConnectHandler(**a_dict)
         net_connect2.config_mode()
 
         print "\n>>>"
-        print "Checking pynet-rtr2 is in configuration mode."
+        print "Checking {}:{} is in configuration mode.".format(net_connect2.ip, net_connect2.port)
         print "Config mode check: {}".format(net_connect2.check_config_mode())
         print "Current prompt: {}".format(net_connect2.find_prompt())
         print ">>>>\n"

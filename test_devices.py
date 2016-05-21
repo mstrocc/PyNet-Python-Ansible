@@ -5,6 +5,7 @@
 pynet1 = {
     'device_type': 'cisco_ios',
     'username': 'pyclass',
+    #'name': 'pynet1',
 }
 
 pynet2 = {
@@ -12,11 +13,13 @@ pynet2 = {
     'username': 'pyclass',
     'secret': '',
     'port': 8022,
+    #'name': 'pynet2',
 }
 
 juniper_srx = {
     'device_type': 'juniper',
     'username': 'pyclass',
     'port': 9822,
+    #'name': 'juniper',
 }
     
