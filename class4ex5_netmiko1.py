@@ -18,7 +18,7 @@ def main():
         a_dict['ip'] = ip_addr
         a_dict['password'] = password
 
-        net_connect2 = ConnectHandler(**pynet2)
+        net_connect2 = ConnectHandler(**a_dict)
         net_connect2.config_mode()
 
         print "\n>>>"
