@@ -20,12 +20,16 @@ def main():
 
     net_connect = ConnectHandler(**pynet2)
 
-    config_commands = ['logging buffered 2000']
+    config_commands = ['logging buffered 20000']
     net_connect.send_config_set(config_commands)
 
-    ouptut = net_connect.send_command("show run | i logging buffer")
-
+    output = net_connect.send_command("show run | i logging buffer")
+    
+    print
+    print "Device: {}:{}".format(net_connect.ip, net_connect.port)
+    print
     print output
+    print
 
 if __name__ == "__main__":
     main()
