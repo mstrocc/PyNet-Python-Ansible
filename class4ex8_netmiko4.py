@@ -17,19 +17,19 @@ def main():
         a_dict['ip'] = ip_addr
         a_dict['password'] = password
         a_dict['verbose'] = False
-
-    net_connect = ConnectHandler(**a_dict)
-    net_connect.send_config_from_file(config_file=config_file.txt)
-    #config_commands = ['logging buffered 20000']
-    #net_connect.send_config_set(config_commands)
-
-    output = net_connect.send_command("show run | i logging")
     
-    print
-    print "Device: {}:{}".format(net_connect.ip, net_connect.port)
-    print
-    print output
-    print
+    # Loop through each router and issue config command via config_file
+    for a_device in (pynet1, pynet2):
+        
+        net_connect = ConnectHandler(**a_device)
+        net_connect.send_config_from_file(config_file='config_file.txt')
+        output = net_connect.send_command("show run | i logging")
+    
+        print
+        print "Device: {}:{}".format(net_connect.ip, net_connect.port)
+        print
+        print output
+        print
 
 if __name__ == "__main__":
     main()
